@@ -11,7 +11,9 @@ export const DivApp = styled.div`
   color: #fff;
   margin: 0 auto;
   margin-top: 10vh;
+  margin-bottom: 10vh;
   gap: 6rem;
+  border-radius: 0.8rem;
 
   .title {
     font-size: 6rem;

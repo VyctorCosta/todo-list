@@ -27,6 +27,9 @@ const GlobalStyle = createGlobalStyle`
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
+  * {
+    font-family: "itim", cursive;
+  }
   html {
     font-size: 62.5%;
     scroll-behavior: smooth;
@@ -35,6 +38,9 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1;
     font-family: "itim", cursive;
     background-color: #4F1919;
+  }
+  button:hover {
+    cursor: pointer;
   }
   ol, ul {
     list-style: none;
