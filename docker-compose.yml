@@ -1,0 +1,56 @@
+version: "3"
+services:
+  frontend-server:
+    build:
+      context: ./frontEnd
+      dockerfile: Dockerfile
+    image: nodejs-server
+    container_name: ${PROJECT_NAME}-frontEnd-server
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${SERVER_PORT_FRONTEND}:3000"
+    volumes:
+      - ./frontEnd:/home/node/app
+      - ./frontEnd/node_modules:/home/node/app/node_modules
+    command: yarn dev
+
+  backend-server:
+    build:
+      context: ./backEnd
+      dockerfile: Dockerfile
+    image: nodejs-server
+    container_name: ${PROJECT_NAME}-backEnd-server
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${SERVER_PORT_BACKEND}:3001"
+    volumes:
+      - ./backEnd:/home/node/app
+      - ./backEnd/node_modules:/home/node/app/node_modules
+    command: yarn dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: ${PROJECT_NAME}-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "${DATABASE_PORT}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  node_modules:
+
+    # Documentação usada para a construção desse arquivo
+    # https://www.digitalocean.com/community/tutorials/containerizing-a-node-js-application-for-development-with-docker-compose-pt
+    # (principalmente o passo 4)
