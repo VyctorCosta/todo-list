@@ -1,10 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "./node_modules/.bin/ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
+    "dev": "./node_modules/.bin/ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
+    "migration": "yarn ts-node ./node_modules/typeorm/cli.js migration:run",
+    "generate": "yarn ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "undo": "yarn ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
     "cors": "^2.8.5",
