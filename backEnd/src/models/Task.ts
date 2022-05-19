@@ -17,6 +17,9 @@ export default class Task {
   @Column("time")
   startTime: string;
 
-  @Column("time")
+  @Column("date")
   finishDate: Date;
+
+  @Column("time")
+  finishTime: string;
 }

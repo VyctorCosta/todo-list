@@ -62,9 +62,10 @@ class TaskController {
 
   public async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { name, description, startDate, startTime, finishDate }: TaskType = req.body;
+      const { name, description, startDate, startTime, finishDate, finishTime }: TaskType =
+        req.body;
       const taskRepository = getCustomRepository(TaskRepository);
-      const taskObject = { name, description, startDate, startTime, finishDate };
+      const taskObject = { name, description, startDate, startTime, finishDate, finishTime };
 
       const { error } = Task.validate(taskObject);
 
@@ -130,7 +131,8 @@ class TaskController {
   public async patch(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const { name, description, startDate, startTime, finishDate }: TaskType = req.body;
+      const { name, description, startDate, startTime, finishDate, finishTime }: TaskType =
+        req.body;
       const taskRepository = getCustomRepository(TaskRepository);
 
       const actualTask = await taskRepository.findById(id);
@@ -142,6 +144,7 @@ class TaskController {
         startDate: startDate || actualTask.startDate,
         startTime: startTime || actualTask.startTime,
         finishDate: finishDate || actualTask.finishDate,
+        finishTime: finishTime || actualTask.finishTime,
       };
       const task = await taskRepository.updateTask(id, taskObject);
 

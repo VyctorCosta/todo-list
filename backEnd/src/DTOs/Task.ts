@@ -8,6 +8,9 @@ export const Task = Joi.object({
     .regex(/^([0-9]{2}):([0-9]{2})$/)
     .required(),
   finishDate: Joi.date().required(),
+  finishTime: Joi.string()
+    .regex(/^([0-9]{2}):([0-9]{2})$/)
+    .required(),
 });
 
 export const UpdatedTask = Joi.object({
@@ -16,6 +19,7 @@ export const UpdatedTask = Joi.object({
   startDate: Joi.date(),
   startTime: Joi.string(),
   finishDate: Joi.date(),
+  finishTime: Joi.string(),
 });
 
 export type TaskType = {
@@ -24,4 +28,5 @@ export type TaskType = {
   startDate: Date;
   startTime: string;
   finishDate: Date;
+  finishTime: string;
 };
