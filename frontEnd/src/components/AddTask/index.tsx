@@ -55,13 +55,15 @@ const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
             <input
               placeholder="xx/xx, xx:xx"
               onChange={({ target }) => setStartDate(target.value)}
+              type="datetime-local"
+              className="start-date"
             ></input>
           </Date>
           <hr />
           <Date className="task-duration">
             <h3>Task duration:</h3>
             <input
-              placeholder="xx/xx, xx:xx"
+              placeholder="xx:xx"
               onChange={({ target }) => setTaskDuration(target.value)}
             ></input>
           </Date>
@@ -69,6 +71,7 @@ const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
           <ButtonTask
             onClick={() => {
               //Função enviar dados pro backend
+              console.log(startDate);
             }}
           >
             Send task

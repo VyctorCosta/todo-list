@@ -115,8 +115,12 @@ export const Date = styled.div`
     border: none;
     outline: none;
     border-radius: 0.5rem;
-    width: 15rem;
+    width: 8rem;
     padding-left: 1rem;
+
+    &.start-date {
+      width: 31rem;
+    }
   }
 
   &.task-duration {
