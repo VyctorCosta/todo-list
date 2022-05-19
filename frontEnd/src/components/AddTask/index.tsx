@@ -1,10 +1,17 @@
-import React, { useState, useRef } from "react";
-import { ButtonTask, DivTask, Description, Date, TaskName } from "./styles";
+import React, { useState, useRef, useEffect } from "react";
+import { ButtonTask, DivTask, Description, DivDate, TaskName } from "./styles";
 import { ReactComponent as ChevronRight } from "../../assets/img/chevron-right.svg";
 import { ReactComponent as ChevronDown } from "../../assets/img/chevron-down.svg";
 
 interface AddTaskProps {
-  insertNewTask?: () => void;
+  insertNewTask: (
+    name: string,
+    description: string,
+    startDate: string,
+    startTime: string,
+    finishDate: string,
+    finishTime: string
+  ) => Promise<void>;
 }
 
 const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
@@ -12,7 +19,7 @@ const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
   const taskRef = useRef<HTMLDivElement>(null);
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date()); // Date.now() - 3600 * 3 * 1000
   const [taskDuration, setTaskDuration] = useState("");
 
   const toggleClassTask = () => {
@@ -29,13 +36,38 @@ const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
         <h2>Add new task</h2>
       </div>
       {classTask ? (
-        <>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            const [finishHour, finishMinutes] = taskDuration.split(":");
+            const finishDate = new Date(
+              startDate.valueOf() +
+                (3600 * Number(finishHour) * 1000 + 60 * Number(finishMinutes) * 1000)
+            );
+            const startTime = `${startDate.getHours()}:${startDate.getMinutes()}`;
+            const finishTime = `${finishDate.getHours()}:${finishDate.getMinutes()}`;
+            insertNewTask(
+              taskName,
+              description,
+              startDate.toLocaleDateString(),
+              startTime,
+              finishDate.toLocaleDateString(),
+              finishTime
+            );
+            setTaskName("");
+            setDescription("");
+            setStartDate(new Date());
+            setTaskDuration("");
+          }}
+        >
           <hr />
           <TaskName>
             <h3>Task name:</h3>
             <input
               placeholder="task name"
+              value={taskName}
               onChange={({ target }) => setTaskName(target.value)}
+              required
             ></input>
           </TaskName>
           <hr />
@@ -46,37 +78,37 @@ const AddTask: React.FC<AddTaskProps> = ({ insertNewTask }) => {
                 id="input-description"
                 placeholder="task description"
                 onChange={({ target }) => setDescription(target.value)}
+                value={description}
+                required
               />
             </div>
           </Description>
           <hr />
-          <Date>
+          <DivDate>
             <h3>Start date:</h3>
             <input
               placeholder="xx/xx, xx:xx"
-              onChange={({ target }) => setStartDate(target.value)}
+              onChange={({ target }) => setStartDate(new Date(target.value))}
               type="datetime-local"
               className="start-date"
+              defaultValue={new Date(Date.now() - 3600 * 3 * 1000).toISOString().slice(0, 16)}
+              required
             ></input>
-          </Date>
+          </DivDate>
           <hr />
-          <Date className="task-duration">
+          <DivDate className="task-duration">
             <h3>Task duration:</h3>
             <input
               placeholder="xx:xx"
+              value={taskDuration}
               onChange={({ target }) => setTaskDuration(target.value)}
+              required
+              pattern="[0-9][0-9]:[0-9][0-9]"
             ></input>
-          </Date>
+          </DivDate>
           <hr />
-          <ButtonTask
-            onClick={() => {
-              //Função enviar dados pro backend
-              console.log(startDate);
-            }}
-          >
-            Send task
-          </ButtonTask>
-        </>
+          <ButtonTask type="submit">Send task</ButtonTask>
+        </form>
       ) : (
         ""
       )}

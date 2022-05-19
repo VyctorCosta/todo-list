@@ -63,10 +63,11 @@ export const Description = styled.div`
 
   p {
     font-size: 2.6rem;
+    margin-top: 1.2rem;
   }
 `;
 
-export const Date = styled.div`
+export const DivDate = styled.div`
   display: flex;
   align-items: center;
   padding-left: 2rem;

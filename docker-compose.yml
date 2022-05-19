@@ -14,6 +14,8 @@ services:
       - ./frontEnd:/home/node/app
       - ./frontEnd/node_modules:/home/node/app/node_modules
     command: yarn dev
+    depends_on:
+      - backend-server
 
   backend-server:
     build:

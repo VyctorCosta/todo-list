@@ -13,6 +13,11 @@ export const DivTask = styled.div`
     padding-bottom: 5rem;
   }
 
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
   hr {
     color: white;
     width: 100%;
@@ -97,7 +102,7 @@ export const TaskName = styled.div`
   }
 `;
 
-export const Date = styled.div`
+export const DivDate = styled.div`
   display: flex;
   align-items: center;
   padding-left: 2rem;

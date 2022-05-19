@@ -31,7 +31,6 @@ export default class TaskRepository extends Repository<Task> {
   public async getAllTasks(): Promise<Task[] | string> {
     try {
       const arrayTasks = await this.find();
-      console.log(arrayTasks);
 
       return arrayTasks;
     } catch (error) {
