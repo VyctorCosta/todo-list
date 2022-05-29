@@ -6,7 +6,7 @@ Projeto criado para exercitar conhecimentos de Front-End com React e Back-End co
 
 Se você não tem docker e docker compose instalado consulte a [documentação oficial](https://docs.docker.com/engine/install/) e instale ambos.
 
-Após isso entre na pasta backEnd e frontEnd e execute um comando abaixo:
+Após isso entre na pasta backEnd e frontEnd e execute um dos comandos abaixo:
 
 ```bash
 npm install
