@@ -20,9 +20,11 @@ export const DivTask = styled.div`
   .trash {
     margin-right: 2rem;
 
-    svg:hover {
-      path {
-        stroke: #bc9e9e;
+    svg {
+      :hover {
+        path {
+          stroke: #bc9e9e;
+        }
       }
     }
   }
