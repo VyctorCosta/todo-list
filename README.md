@@ -17,9 +17,10 @@ ou
 yarn install
 ```
 
-Crie um arquivo chamado .env usando o exemplo do arquivo .env.example dentro da pasta raiz do projeto e dentro da pasta backEnd.
+Crie um arquivo chamado .env na raiz do projeto e copie tudo do arquivo .env.example para ele. <br />
+Faça o mesmo procedimento dentro da pasta backEnd
 
-Após isso execute o comando abaixo:
+Após isso execute o comando abaixo na raiz do projeto:
 
 ```bash
 docker compose up
