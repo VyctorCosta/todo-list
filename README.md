@@ -20,6 +20,12 @@ yarn install
 Crie um arquivo chamado .env na raiz do projeto e copie tudo do arquivo .env.example para ele. <br />
 Faça o mesmo procedimento dentro da pasta backEnd
 
+Após isso execute o comando abaixo para criar uma tabela task no banco de dados Postgres
+
+```bash
+docker exec -it todo-list-backEnd-server yarn migration
+```
+
 Após isso execute o comando abaixo na raiz do projeto:
 
 ```bash
