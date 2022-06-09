@@ -33,3 +33,9 @@ docker compose up
 ```
 
 E acesse o endereço [http://localhost:3000](http://localhost:3000)
+<br />
+<br />
+
+## Demonstração do Site
+
+<img src="https://github.com/VyctorCosta/todo-list/blob/main/example_img.jpeg?raw=true" alt="Seed logo"/>
