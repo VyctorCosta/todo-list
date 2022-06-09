@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { ButtonTask, DivTask, Description, DivDate, TaskName } from "./styles";
 import { ReactComponent as ChevronRight } from "../../assets/img/chevron-right.svg";
 import { ReactComponent as ChevronDown } from "../../assets/img/chevron-down.svg";
